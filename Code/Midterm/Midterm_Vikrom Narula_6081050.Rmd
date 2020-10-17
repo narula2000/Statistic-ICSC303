@@ -1,0 +1,153 @@
+---
+title: "Midterm_Vikrom_Narula_6081050"
+output: pdf_document
+---
+
+Name: Vikrom Narula ID: 6081050
+
+# Question 1
+The following data represent the salary (baht) for a sample of 10 employees in a company: 18000 24000 9000 35000 27000 15000 28000 40000 33000 20000
+
+a) ( 3 points) Find the average of salaries.
+```{r}
+x <- c(18000, 24000, 9000, 35000, 27000, 15000, 28000, 40000, 33000, 20000)
+mean(x)
+```
+b) ( 3 points) Find the median of the salaries.
+```{r}
+median(x)
+```
+c) ( 3 points) Find the IQR of the salaries.
+```{r}
+IQR(x)
+```
+d) ( 3 points) Is the distribution of this dataset skewed? If so, is it right skewed or left skewed? Explain.
+**Answer**Due to mean < median it implies the data is left skewed slightly  
+e) (4 points) If we draw a box plot for this dataset, what are the upper whisker and the lower whisker of the box plot?
+```{r}
+hist(x)
+boxplot(x,horizontal=TRUE)
+```
+```{r}
+quantile(x)
+```
+
+**Answer** Lower = 18500 – 1.5 * 13250 = 1375 ut min is 9000 hence it's 9000; Upper = 31750 + 1.5 * 13250 = 51625 but max is 40000 hence it's 40000
+
+# Question 2 
+A random sample of 500 students are classified below by gender and their level of education.
+Education         Male      Female
+High School       46        54        100
+Undergraduate     176       144       320
+Graduate          38        42        80
+                  260       240       500
+a) ( 3 points) Find the probability that a randomly selected student is a male 
+**Answer** P(M) = 260/500 = 13/25
+b) ( 3 points) Find the probability that a randomly selected student is an undergraduate student.
+**Answer** P(Us) = 320/500 = 16/25
+c) ( 4 points) Find the probability that a randomly selected student is a male graduate student.
+**Answer** P(M and Gs) = 38/500 = 19/250
+d) ( 4 points) If the selected student is a female, find the probability that the student is a high school student.
+**Answer** P(Hs | F) = P(Hs and F) / P(F) = 46/500 * 500/240 = 46/240 = 23/120
+e) ( 4 points) Find the probability that a randomly selected student is either a female or an undergraduate student.
+**Answer** P(F or Us) = P(F) + P(Us) - P(F and Us) = 240/500 + 320/500 - 144/500 = 416/500
+
+# Question 3
+Let the random variable x be the weight of newborn baby (in kilogram). The probability distribution of x is shown below:
+x       P(X=x)
+2       0.1
+2.5     0.2
+3       0.4
+3.5     0.2
+4       0.1
+
+a) ( 4 points) Find the expected weight (in kg.) of a newborn baby 
+**Answer** E[X] = 0.1 * 2 + 0.2 * 2.5 + 0.4 * 3 + 0.2 * 3.5 + 0.1 * 4 = 3
+b) ( 4 points) Find the standard deviation of weights of newborn babies.
+**Answer** 
+```{r}
+wt <- c(0.1, 0.2, 0.4, 0.2, 0.1)
+x <- c(2, 2.5, 3, 3.5, 4)
+mu <- weighted.mean(x,wt)
+v1 <- sum(wt)
+X <- (x - mu)**2
+sd <- sqrt(sum(wt * X))
+sd
+```
+c) ( 4 points) Find the probability that a newborn baby has weight less than 3.5 kilogram.
+**Answer**0.1 + 0.2 + 0.5 = 0.8
+d) ( 4 points) If we believe that the weight of a baby increases one kilogram per month,
+what is the average and variance of weights of babies with two months old.
+```{r}
+wt <- c(0.1, 0.2, 0.4, 0.2, 0.1)
+x <- c(3, 3.5, 4, 4.5, 5)
+mu <- weighted.mean(x,wt)
+v1 <- sum(wt)
+X <- (x - mu)**2
+vari <- (sum(wt * X))
+print(mu)
+print(vari)
+```
+# Question 4
+Identify each of the following variables as either quantitative or qualitative.
+a) (1 point) Rating of the effectiveness of a new cold remedy (Not effective,
+effective). 
+**Answer** quantitative
+b) (1 point) Amount of time spent assembling a five-shelf bookcase. 
+**Answer** quantitative
+c) (1 point) Number of children in a beginning swimming class. 
+**Answer** quantitative
+d) (1 point) University where a student is enrolled.
+**Answer** qualitative.
+e) (1 point) Color preference for a nursery. 
+**Answer** qualitative.
+f) (1 point) Rating the U.S. foreign policy in the Middle East (fair, biased).
+**Answer** qualitative.
+
+# Question 5
+Security Systems A home security system is designed to have a 99% reliability rate. Suppose that nine homes equipped with this system experience an attempted burglary. Find the probabilities of these events:
+a) (5 points) At least one of the alarms is triggered.
+**Answer** 0.08648275252 
+https://stattrek.com/online-calculator/binomial.aspx
+b) (5 points) More than seven of the alarms are triggered. 
+**Answer** 0.000001 https://stattrek.com/online-calculator/binomial.aspx
+c) (5 points) Eight or fewer alarms are triggered.
+```{r}
+pbinom(8,9,0.01)
+```
+
+# Question 6
+A radioactive mass emits particles according to a Poisson distribution. particles will be emitted one per two-second.
+
+a) (5 points) What is the probability that one particle is emitted in a four-second period?
+```{r}
+dpois(1,1/2 * 1/4)
+```
+b) (5 points) What is the probability that no particles are emitted in a one-second period?
+```{r}
+dpois(0,1/2 * 1)
+```
+
+c) (5 points) What is the mean number of particles emitted per second?
+**Answer** 1/2 = 0.5
+
+# Question 7
+The fill volume of cans filled by a certain machine is normally distributed with mean 12.05 oz and standard deviation 0.03 oz. 
+
+a) (7 points) What proportion of cans contain less than 12 oz? 
+```{r}
+pnorm(q = 12,mean = 12.05,sd = 0.03)
+```
+
+b) (7 points) The process mean can be adjusted through calibration. To what value should the mean be set so that 99% of the cans will contain 12 oz or more?
+```{r}
+sqrt(log(0.99*sqrt(2*pi*0.03))/(-2*0.03^2))+12
+```
+
+
+
+
+
+
+
+
