@@ -1,0 +1,87 @@
+---
+title: "Quiz6"
+output: pdf_document
+---
+
+Name: Vikrom Narula ID: 6081050
+
+# Question 1
+a) Reject Null hypothesis
+b) One 
+
+# Question 2
+```{r}
+g1 <- c(121.3, 111.9, 110.1, 105.4, 101.6)
+g2 <- c(99.5, 113.2, 108.9, 109.1, 100.4)
+g3 <- c(104.2, 109.7, 102.3, 111.2, 106.6)
+
+cg <- data.frame(g1, g2, g3)
+summary(cg)
+
+sg <- stack(cg)
+sg
+
+ar <- aov(values ~ ind,data = sg)
+summary(ar)
+```
+a) 0.611
+b) 0.559
+c) Can't reject
+d) is no
+
+# Question 3
+```{r}
+mouse.data <- data.frame(
+  weight=c(16, 11, 15, 8, 12, 10, 13, 14),
+  size=c(58, 40, 55, 35, 43, 41, 52, 49))
+
+mouse.data # print the data to the screen in a nice format
+
+## plot a x/y scatter plot with the data
+plot(mouse.data$weight, mouse.data$size)
+
+## create a "linear model" - that is, do the regression
+mouse.regression <- lm(size ~ weight, data=mouse.data)
+## generate a summary of the regression
+summary(mouse.regression)
+
+cor(mouse.data$weight, mouse.data$size, method = "spearman")
+```
+a) 0.9223
+b) Positively correlated
+c) 0.952381
+d) Cause it positively correlated
+e) y = 2.9098 * x + 10.6165
+
+# Quesion 4
+```{r}
+## Here's the data from the video
+mouse.data <- data.frame(
+  weight=c(1, 2, 3, 4, 5, 6),
+  size=c(6.1, 5.1, 5.0, 4.2, 3.7, 3.2))
+
+mouse.data # print the data to the screen in a nice format
+
+## plot a x/y scatter plot with the data
+plot(mouse.data$weight, mouse.data$size)
+
+## create a "linear model" - that is, do the regression
+mouse.regression <- lm(size ~ weight, data=mouse.data)
+## generate a summary of the regression
+summary(mouse.regression)
+
+## add the regression line to our x/y scatter plot
+plot(mouse.data$weight, mouse.data$size) + abline(mouse.regression, col="blue")
+
+6.50000 - 0.55714 * 3.5
+```
+a) y = 6.50000 - 0.55714 * x
+b) 
+c) yes
+d) 4.55001
+e) 0.0002484
+f) It does provide efficient evidence
+g) are
+h) 0.9744
+i) It shows that the model is a good fit
+
